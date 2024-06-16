@@ -1,0 +1,78 @@
+# how to make a simple Admin panel logic. means there is a button when i click on that the sidebar will be collapsed and again when i click on it the sidebar will be expand
+# Step-1 components/Admin/index.jsx
+
+import { useState } from "react"
+
+const Admin = () =>{
+    const [size, setSize] = useState(280);
+ return(
+    <div>
+        <aside className="w-[280px] bg-indigo-600 fixed top-0 left-0 h-full"
+        style={{width: size}}>
+        </aside>
+        <section className="bg-gray-100 h-screen"
+        style={{marginLeft:size}}>
+            
+        <nav className="bg-white p-6 shadow">
+           <div className="flex gap-4 items-center">
+           <button className="bg-gray-50 hover:bg-indigo-600 hover:text-white w-8 h-8" onClick={() => setSize(size===280 ? 0: 280)}>
+                            <i className="ri-menu-2-line text-xl"></i>
+                        </button> 
+            <h1 className="text-md font-semibold">shopcode</h1>
+           </div>
+        </nav>
+            
+            
+        </section>
+    </div>
+ )
+}
+export default Admin
+
+#Step-2 app.jsx
+import 'remixicon/fonts/remixicon.css'
+import {BrowserRouter, Routes, Route } from 'react-router-dom'
+import Admin from './components/Admin'
+const App = ()=>{
+     return(
+       <BrowserRouter>
+       <Routes>
+        <Route path="admin/" element={<Admin/>} />
+        <Route path="home/" element={<h1>welcome to homepage</h1>} />
+        <Route path="about/" element={<h1>welcome to aboutpage</h1>} />
+        <Route path="contact/" element={<h1>welcome to contactpage</h1>} />
+       </Routes>
+       </BrowserRouter>
+
+     )
+  }
+  export default App
+
+#step-3 index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#step-4 taiwind.jsx
+/** @type {import('tailwindcss').Config} */
+
+export default {
+
+  content: [
+
+    "./index.html",
+
+    "./src/**/*.{js,ts,jsx,tsx}",
+
+  ],
+
+  theme: {
+
+    extend: {},
+
+  },
+
+  plugins: [],
+
+}
+
