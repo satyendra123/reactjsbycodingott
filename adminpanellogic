@@ -1,6 +1,7 @@
 # how to make a simple Admin panel logic. means there is a button when i click on that the sidebar will be collapsed and again when i click on it the sidebar will be expand
 # Step-1 components/Admin/index.jsx
 
+
 import { useState } from "react"
 
 const Admin = () =>{
@@ -8,10 +9,16 @@ const Admin = () =>{
  return(
     <div>
         <aside className="w-[280px] bg-indigo-600 fixed top-0 left-0 h-full"
-        style={{width: size}}>
+        style={{
+            width: size,
+            transition:'0.3s'
+            }}>
         </aside>
         <section className="bg-gray-100 h-screen"
-        style={{marginLeft:size}}>
+        style={{
+            marginLeft:size,
+            transition:'0.3s'
+            }}>
             
         <nav className="bg-white p-6 shadow">
            <div className="flex gap-4 items-center">
@@ -28,6 +35,7 @@ const Admin = () =>{
  )
 }
 export default Admin
+
 
 #Step-2 app.jsx
 import 'remixicon/fonts/remixicon.css'
