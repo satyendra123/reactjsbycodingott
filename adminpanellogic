@@ -2,10 +2,12 @@
 # Step-1 components/Admin/index.jsx
 
 
+
 import { useState } from "react"
 
 const Admin = () =>{
     const [size, setSize] = useState(280);
+    const[accountMenu, setAccountMenu] = useState(false);
  return(
     <div>
         <aside className="w-[280px] bg-indigo-600 fixed top-0 left-0 h-full"
@@ -20,12 +22,27 @@ const Admin = () =>{
             transition:'0.3s'
             }}>
             
-        <nav className="bg-white p-6 shadow">
+        <nav className="bg-white p-6 shadow flex items-center justify-between">
            <div className="flex gap-4 items-center">
            <button className="bg-gray-50 hover:bg-indigo-600 hover:text-white w-8 h-8" onClick={() => setSize(size===280 ? 0: 280)}>
                             <i className="ri-menu-2-line text-xl"></i>
                         </button> 
             <h1 className="text-md font-semibold">shopcode</h1>
+           </div>
+
+           <div>
+            <button className="relative">
+            <img src="images/images.jpeg" className="w-14 h-14 rounded-full" alt="" onClick={()=>setAccountMenu(!accountMenu)}/>
+            {accountMenu &&  <div className=" absolute top-18 right-0 bg-white-500 p-6 w-[200px] shadow-lg">
+             <div>
+                <h1 className="text-lg font-semibold"> Er. John Doe</h1>
+                <p className="text-gray-500">example@gmail.com</p>
+                <div className="h-px bg-gray-200 my-4"/>
+                <button><i class="ri-logout-box-r-line mr-2"></i>logout</button>
+             </div>
+            </div>}
+
+            </button>
            </div>
         </nav>
             
@@ -35,6 +52,7 @@ const Admin = () =>{
  )
 }
 export default Admin
+
 
 
 #Step-2 app.jsx
