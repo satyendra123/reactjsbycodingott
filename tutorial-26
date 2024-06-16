@@ -1,0 +1,365 @@
+#how to setup the react js with tailwind css. 
+
+
+If you haven't already created a React project, you can do so using Create React App:
+
+
+Step-1 Create React Project Using Vite
+npm create vite@latest
+
+
+Step-2 Install depencies like this
+cd go_to_project_folder
+npm install
+
+
+Step-3 Setup and install Tailwind CSS
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+
+Step-4 Open tailwind.config.js file and paste these code
+
+
+/** @type {import('tailwindcss').Config} */
+
+export default {
+
+ content: [
+
+  "./index.html",
+
+  "./src/**/*.{js,ts,jsx,tsx}",
+
+ ],
+
+ theme: {
+
+  extend: {},
+
+ },
+
+ plugins: [],
+
+}
+
+
+
+Step-5 Open index.css and paste it
+
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
+
+Now, you can test tailwind add any class Value related to tailwind in your HTML tags like h1,p, div
+
+
+Designing a Signup Form using Tailwind CSS also Handling Form Data
+
+
+import { useState } from 'react';
+
+import 'animate.css';
+
+
+
+const App = ()=>{
+
+  const model = {
+
+    firstname: '',
+
+    lastname: '',
+
+    email: '',
+
+    password: '',
+
+    username: '',
+
+    mobile: ''
+
+  }
+
+  const [form, setForm] = useState(model)
+
+
+
+  const getFormValue = (e)=>{
+
+    const input = e.target
+
+    const value = input.value
+
+    const key = input.name
+
+    setForm({
+
+      ...form,
+
+      [key]: value
+
+    })
+
+  }
+
+
+
+  const signup = (e)=>{
+
+    e.preventDefault()
+
+    console.log(form)
+
+  }
+
+
+
+  return (
+
+    <div className="bg-gray-100 h-screen flex justify-center items-center">
+
+      <div className="bg-white px-8 py-6 w-[450px] shadow-lg rounded-lg animate__animated animate__zoomIn">
+
+        <h1 className='text-2xl font-bold mb-4 text-center'>CodingOtt Signup Form</h1>
+
+        <form className='flex flex-col gap-4' onSubmit={signup}>
+
+          <div className='flex flex-col gap-1'>
+
+            <label className='text-lg font-semibold'>Firstname</label>
+
+            <input
+
+              name="firstname"
+
+              type="text"
+
+              placeholder="Enter first name here"
+
+              className='border p-2 rounded border-gray-300'
+
+              onChange={getFormValue}
+
+            />
+
+            {/* <small className='text-rose-600 font-semibold text-sm'>This field is required</small> */}
+
+          </div>
+
+
+
+          <div className='flex flex-col gap-1'>
+
+            <label className='text-lg font-semibold'>Lastname</label>
+
+            <input
+
+              name="lastname"
+
+              type="text"
+
+              placeholder="Enter last name here"
+
+              className='border p-2 rounded border-gray-300'
+
+              onChange={getFormValue}
+
+            />
+
+            {/* <small className='text-rose-600 font-semibold text-sm'>This field is required</small> */}
+
+          </div>
+
+
+
+          <div className='flex flex-col gap-2'>
+
+            <label className='text-lg font-semibold'>Email</label>
+
+            <input
+
+              name="email"
+
+              type="email"
+
+              placeholder="email@gmail.com"
+
+              className='border p-2 rounded border-gray-300'
+
+              onChange={getFormValue}
+
+            />
+
+            {/* <small className='text-rose-600 font-semibold text-sm'>This field is required</small> */}
+
+          </div>
+
+
+
+          <div className='flex flex-col gap-2'>
+
+            <label className='text-lg font-semibold'>Password</label>
+
+            <input
+
+              name="password"
+
+              type="password"
+
+              placeholder="*************"
+
+              className='border p-2 rounded border-gray-300'
+
+              onChange={getFormValue}
+
+            />
+
+            {/* <small className='text-rose-600 font-semibold text-sm'>This field is required</small> */}
+
+          </div>
+
+
+
+          <div className='flex flex-col gap-2'>
+
+            <label className='text-lg font-semibold'>Username</label>
+
+            <input
+
+              name="username"
+
+              type="text"
+
+              placeholder="@Username"
+
+              className='border p-2 rounded border-gray-300'
+
+              onChange={getFormValue}
+
+            />
+
+            {/* <small className='text-rose-600 font-semibold text-sm'>This field is required</small> */}
+
+          </div>
+
+
+
+          <div className='flex flex-col gap-2'>
+
+            <label className='text-lg font-semibold'>Mobile no</label>
+
+            <input
+
+              name="mobile"
+
+              type="number"
+
+              placeholder="9472395194"
+
+              className='border p-2 rounded border-gray-300'
+
+              onChange={getFormValue}
+
+            />
+
+            {/* <small className='text-rose-600 font-semibold text-sm'>This field is required</small> */}
+
+          </div>
+
+
+
+          <button className='border-0 bg-indigo-600 text-white rounded py-2 font-semibold'>Submit</button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  )
+
+}
+
+
+
+export default App
+
+
+
+List of useful Tailwind CSS class values
+
+
+Width
+w-1 : increase this 1 according to your need
+w-fit : Arrange width according to content
+w-full : full width 100%
+w-[50px] : Add Square to set custom width value
+w-6/12 : 50% width
+
+
+Height
+h-full - 100% height
+h-screen - 100vh height
+min-h-screen - minimum height 100vh
+
+
+Padding
+p-1 : set all side padding you can increase this 1 according to your need
+px-1 : set left and right side padding
+py-1 : set top and bottom side padding
+pt-1 : set top side padding
+pb-1 : set bottom side padding
+
+
+Margin
+m-1 : set all side margin you can increase this 1 according to your need
+mx-1 : set left and right side margin
+my-1 : set top and bottom side margin
+mt-1 : set top side margin
+mb-1 : set bottom side margin
+
+
+Shadow
+shadow
+shadow-sm
+shadow-md
+shadow-lg
+shadow-xl
+shadow-2xl
+
+
+Border Radius
+rounded
+rounded-md
+rounded-lg
+rounded-full - For making box circular
+
+
+Border
+border - to setup default border
+border-1 - for border width
+border-red-500 - change border color
+
+
+Display
+flex
+block
+hidden
+justify-center justify-between justify-around justify-evenly
+items-center
+
+
+Position
+absolute
+relative
+fixed
+sticky
+top-0
+left-0
+z-10 - for z-index
