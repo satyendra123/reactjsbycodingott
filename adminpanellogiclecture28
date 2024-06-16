@@ -1,11 +1,9 @@
 # how to make a simple Admin panel logic. means there is a button when i click on that the sidebar will be collapsed and again when i click on it the sidebar will be expand
-# Step-1 components/Admin/index.jsx
-
-
+# Step-1 components/Admin/Layout.jsx
 
 import { useState } from "react"
 
-const Admin = () =>{
+const Layout = ({children}) =>{
     const [size, setSize] = useState(280);
     const[accountMenu, setAccountMenu] = useState(false);
  return(
@@ -22,7 +20,7 @@ const Admin = () =>{
             transition:'0.3s'
             }}>
             
-        <nav className="bg-white p-6 shadow flex items-center justify-between">
+        <nav className="bg-white p-6 shadow flex items-center justify-between sticky top-0 left-0">
            <div className="flex gap-4 items-center">
            <button className="bg-gray-50 hover:bg-indigo-600 hover:text-white w-8 h-8" onClick={() => setSize(size===280 ? 0: 280)}>
                             <i className="ri-menu-2-line text-xl"></i>
@@ -32,7 +30,7 @@ const Admin = () =>{
 
            <div>
             <button className="relative">
-            <img src="images/images.jpeg" className="w-14 h-14 rounded-full" alt="" onClick={()=>setAccountMenu(!accountMenu)}/>
+            <img src="/images/images.jpeg" className="w-14 h-14 rounded-full" alt="" onClick={()=>setAccountMenu(!accountMenu)}/>
             {accountMenu &&  <div className=" absolute top-18 right-0 bg-white-500 p-6 w-[200px] shadow-lg">
              <div>
                 <h1 className="text-lg font-semibold"> Er. John Doe</h1>
@@ -45,28 +43,202 @@ const Admin = () =>{
             </button>
            </div>
         </nav>
-            
+            <div className="p-6">
+                {children}
+            </div>
             
         </section>
     </div>
  )
 }
-export default Admin
+export default Layout
 
+#step-2 components/Admin/NoFound.jsx
+const NoFound= () =>
+    {
+        return (
+        <div className="h-screen bg-gray-600 flex items-center justify-center">
+            <h1>404 | Not Found</h1>
+        </div>
+        )
+    }
 
+    export default NoFound
 
-#Step-2 app.jsx
+#step-3 components/Admin/Order.jsx
+import React, { useState } from 'react';
+import Layout from './Layout';
+
+const Order = () => {
+  const [orders, setOrders] = useState([
+    {
+      orderId: '#rty345678',
+      customerName: 'Satyendra Singh',
+      email: 'Singhsatyendra885@gmail.com',
+      mobile: '+91 9993771891',
+      product: 'Lenovo iPad 350',
+      amount: '53000',
+      date: '12-10-2024 10:15:14 AM',
+      status: 'Active'
+    },
+    {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      }
+  ]);
+
+  return (
+    <Layout>
+      <h1>Hi Order</h1>
+      <div className="mt-6">
+        <table className="w-full">
+          <thead>
+            <tr className="bg-rose-500 text-white">
+              <th className="py-4">Order ID</th>
+              <th>Customer's Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Product</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((item, index) => (
+              <tr className="bg-white text-center" key={index} style={{background: (index+1) % 2===0 ? '#f1f5f9' : 'white' }}>
+                <td className="py-4">{item.orderId}</td>
+                <td className="capitalize">{item.customerName}</td>
+                <td>{item.email}</td>
+                <td>{item.mobile}</td>
+                <td className="capitalize">{item.product}</td>
+                <td>₹{item.amount}</td>
+                <td>{item.date}</td>
+                <td className="capitalize">
+                    <select className="border p-2 border-gray-200">
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="dispatched">Dispatched</option>
+                        <option value="returned">Returned</option>
+                    </select>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Layout>
+  );
+}
+
+export default Order;
+
+#Step-4 components/Admin/Products.jsx
+import Layout from './Layout'
+const Products = () =>{
+    return (
+        <Layout>
+            <div>
+                <h1>Products</h1>
+            </div>
+        </Layout>
+    )
+}
+
+export default Products
+
+#Step-5 app.jsx
 import 'remixicon/fonts/remixicon.css'
 import {BrowserRouter, Routes, Route } from 'react-router-dom'
-import Admin from './components/Admin'
+
+import NoFound from './components/Admin/NoFound'
+import Products from './components/Admin/Products'
+import Order from './components/Admin/Order'
 const App = ()=>{
      return(
        <BrowserRouter>
        <Routes>
-        <Route path="admin/" element={<Admin/>} />
-        <Route path="home/" element={<h1>welcome to homepage</h1>} />
-        <Route path="about/" element={<h1>welcome to aboutpage</h1>} />
-        <Route path="contact/" element={<h1>welcome to contactpage</h1>} />
+        <Route path="/admin">
+        <Route path="product" element={<Products/>} />
+        <Route path="orders" element={<Order/>} />
+        </Route>
+        <Route path="*" element={<NoFound/>}/>
        </Routes>
        </BrowserRouter>
 
