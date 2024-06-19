@@ -1,0 +1,45 @@
+#step-1 components/Admin/Dashboard.jsx
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+
+const Dashboard = () => {
+    const [size, setSize] = useState(280); // Initialize size state
+
+    return (
+        <div>
+            <aside className="bg-primary position-fixed top-0 left-0 vh-100" style={{ width:size, transition:'0.3s' }}></aside>
+            <section className="bg-gray" style={{ marginLeft:size , transition:'0.3s' , minHeight: '100vh' }}>
+                <nav className="bg-white p-4 shadow">
+                    <button className="btn btn-secondary" onClick={()=>setSize(size===280 ?0:280)}>Toggle</button>
+                </nav>
+            </section>
+        </div>
+    );
+};
+
+export default Dashboard;
+
+#step-2 App.js
+import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Dashboard from './components/Admin/Dashboard';
+import User from './components/Admin/User';
+import NotFound from './components/Admin/NotFound';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/admin">
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="user" element={<User />} />
+          {/* You can define more routes here */}
+        </Route>
+        {/* Route for handling 404 */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
