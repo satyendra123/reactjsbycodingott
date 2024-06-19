@@ -1,0 +1,25 @@
+#step-1 dashboard.jsx
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const Dashboard = () => {
+    const [asideOpen, setAsideOpen] = useState(false);
+
+    return (
+        <div>
+            <aside className="bg-primary position-fixed top-0 left-0 vh-100 d-flex justify-content-between" style={{ width: asideOpen ? 280 : 0, transition: '0.1s' }}>
+                <button className="btn btn-danger mt-3 mr-3 align-self-start" onClick={() => setAsideOpen(!asideOpen)}>Close Aside</button>
+            </aside>
+
+            <section className="bg-gray" style={{ marginLeft: asideOpen ? 280 : 0, transition: '0.1s', minHeight: '100vh', position: 'relative' }}>
+                <button className="btn btn-primary" onClick={() => setAsideOpen(!asideOpen)} style={{ display: asideOpen ? 'none' : 'block', position: 'absolute', top: '20px', left: '20px' }}>
+                    Open Aside
+                </button>
+            </section>
+        </div>
+    );
+};
+
+export default Dashboard;
+
+
