@@ -7,7 +7,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <aside className="bg-primary position-fixed top-0 left-0 vh-100" style={{ width:size, transition:'0.3s' }}></aside>
+            <aside className="bg-primary position-fixed top-0 left-0 vh-100" style={{ width:size, transition:'0.3s' }}></aside>  
             <section className="bg-gray" style={{ marginLeft:size , transition:'0.3s' , minHeight: '100vh' }}>
                 <nav className="bg-white p-4 shadow">
                     <button className="btn btn-secondary" onClick={()=>setSize(size===280 ?0:280)}>Toggle</button>
