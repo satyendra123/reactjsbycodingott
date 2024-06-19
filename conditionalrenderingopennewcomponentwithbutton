@@ -1,0 +1,115 @@
+#in this case man lo mere dashboard me ek button hai. mai chahta hu ki agar mai us button par click karu to home component khul kar aa jaye pure screen par aur us home components par ek button ho close ka jab us par click karu to mera dashboard ka khul kar aa jaye. ye basically conditional rendering hai
+#step-1 componenrs/Admin/Dashboard.jsx
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import User from './User'; // Import the User (Home) component
+
+const Dashboard = () => {
+    const [showHome, setShowHome] = useState(false);
+
+    const openHome = () => {
+        setShowHome(true);
+    };
+
+    const closeHome = () => {
+        setShowHome(false);
+    };
+
+    return (
+        <div>
+            {/* Navigation Bar */}
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                    <button className="btn btn-primary"><i className="ri-menu-3-line mr-2"></i></button>
+                    <a className="navbar-brand mr-4" href="#">Navbar</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Features</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Pricing</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link disabled" href="#" tabIndex="-1" aria-disabled="true">Disabled</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <form className="d-flex justify-content-end">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+
+            {/* Main section */}
+            <section className="bg-gray">
+                <h1>This is my Dashboard</h1>
+                <button className="btn btn-primary" onClick={openHome} style={{ display: showHome ? 'none' : 'block' }}>
+                    Open Home
+                </button>
+                {showHome && <User onClose={closeHome} />}
+                
+                {/* Dashboard content */}
+                {!showHome && (
+                    <div>
+                        {/* Replace with your dashboard content */}
+                        <p>Dashboard content goes here.</p>
+                    </div>
+                )}
+            </section>
+        </div>
+    );
+};
+
+export default Dashboard;
+
+#step-2 components/Admin/User.js
+// User.js
+import React from 'react';
+
+const User = ({ onClose }) => {
+    return (
+        <div className="position-fixed top-0 left-0 vh-100 vw-100 d-flex justify-content-center align-items-center bg-info">
+            <div className="bg-white p-4 rounded shadow" style={{ maxWidth: '600px' }}>
+                <h2 className="mb-4">Home Component</h2>
+                <p>This is the content of the Home component.</p>
+                <button className="btn btn-danger" onClick={onClose}>Close</button>
+            </div>
+        </div>
+    );
+};
+
+export default User;
+
+#step-3 App.js
+import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Dashboard from './components/Admin/Dashboard';
+import User from './components/Admin/User';
+import NotFound from './components/Admin/NotFound';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/admin">
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="user" element={<User />} />
+          {/* You can define more routes here */}
+        </Route>
+        {/* Route for handling 404 */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
